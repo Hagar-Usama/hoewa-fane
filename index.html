@@ -44,16 +44,16 @@
         <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
           <ul class="list-reset lg:flex justify-end flex-1 items-center">
             <li class="mr-3">
-              <a class="inline-block py-2 px-4 text-black no-underline" href="#">Home</a>
+              <a class="inline-block py-2 px-4 hover:text-gray-800 text-white no-underline" href="#">Home</a>
             </li>
             <li class="mr-3">
-              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#why-us">Why us</a>
+              <a class="inline-block text-white no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#why-us">Why us</a>
             </li>
             <li class="mr-3">
-              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#features">Features</a>
+              <a class="inline-block text-white no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#features">Features</a>
             </li>
             <li class="mr-3">
-              <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#pricing">Pricing</a>
+              <a class="inline-block text-white no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#pricing">Pricing</a>
             </li>
           </ul>
           
@@ -878,6 +878,8 @@
       var brandname = document.getElementById("brandname");
       var toToggle = document.querySelectorAll(".toggleColour");
 
+      const links = document.querySelectorAll('#nav-content ul li a');
+
       document.addEventListener("scroll", function () {
         /*Apply classes for slide in bar*/
         scrollpos = window.scrollY;
@@ -896,6 +898,9 @@
           header.classList.add("shadow");
           navcontent.classList.remove("bg-gray-100");
           navcontent.classList.add("bg-white");
+          links.forEach(link => {
+                link.classList.add('text-gray-800');
+            });
         } else {
           header.classList.remove("bg-white");
           navaction.classList.remove("gradient");
@@ -906,6 +911,10 @@
           for (var i = 0; i < toToggle.length; i++) {
             toToggle[i].classList.add("text-white");
             toToggle[i].classList.remove("text-gray-800");
+            links.forEach(link => {
+                link.classList.remove('text-gray-800');
+                link.classList.add('text-white');
+            });
           }
 
           header.classList.remove("shadow");
@@ -966,11 +975,9 @@
       if (entry.isIntersecting) {
         // Add font-bold when section is in view
         navLink.classList.add('font-bold');
-        navLink.classList.remove('text-black'); // Optionally change color
       } else {
         // Remove font-bold when section is not in view
         navLink.classList.remove('font-bold');
-        navLink.classList.add('text-black'); // Restore default color
       }
     });
   }, {
